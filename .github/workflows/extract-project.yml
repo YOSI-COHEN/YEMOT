@@ -1,0 +1,30 @@
+name: Extract YEMOT project
+
+on:
+  push:
+    paths:
+      - "ai_phone_line_gemini_audio_generic_with_content_filter.zip"
+
+permissions:
+  contents: write
+
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Extract project
+        run: |
+          unzip -o ai_phone_line_gemini_audio_generic_with_content_filter.zip -d extracted
+          cp -a extracted/. .
+          rm -rf extracted ai_phone_line_gemini_audio_generic_with_content_filter.zip
+
+      - name: Commit extracted project
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Extract YEMOT project" || exit 0
+          git push
