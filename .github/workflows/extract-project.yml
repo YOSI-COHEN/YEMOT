@@ -3,6 +3,7 @@ name: Extract YEMOT project
 on:
   push:
     paths:
+      - "extract-trigger.txt"
       - "ai_phone_line_gemini_audio_generic_with_content_filter.zip"
 
 permissions:
@@ -19,7 +20,7 @@ jobs:
         run: |
           unzip -o ai_phone_line_gemini_audio_generic_with_content_filter.zip -d extracted
           cp -a extracted/. .
-          rm -rf extracted ai_phone_line_gemini_audio_generic_with_content_filter.zip
+          rm -rf extracted ai_phone_line_gemini_audio_generic_with_content_filter.zip extract-trigger.txt
 
       - name: Commit extracted project
         run: |
