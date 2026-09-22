@@ -1,10 +1,14 @@
-# Generic AI Phone Line — Gemini Audio
+# AI Phone Line
 
-This package is a sanitized generic version of the AI phone-line architecture.
+שרת קו טלפוני מבוסס Yemot + Gemini Audio.
 
-Core flow:
-Yemot recording -> raw audio -> Gemini -> answer -> Yemot/TTS playback.
+המערכת מקבלת הקלטת שמע גולמית מ-Yemot, שולחת את האודיו ישירות ל-Gemini, מקבלת תשובה, ומחזירה אותה להקראה דרך Yemot.
 
-There are no personal phone numbers, passwords, API keys, tokens, personal repository URLs, or personal Render URLs in this package.
-
-Set the values in `.env` / Render Environment Variables before deployment.
+כולל:
+- Gemini Audio עם fallback בין מודלים ומפתחות
+- שמירת שיחות ב-Supabase כאשר מוגדר
+- Dashboard בסיסי
+- חיפוש אינטרנט מפורש דרך Gemini
+- הגדרת IVR אוטומטית ב-Yemot כאשר YEMOT_API_KEY ו-PUBLIC_BASE_URL מוגדרים
+- בחירת קולות Yemot
+- סינון תוכן מובנה
